@@ -10,7 +10,7 @@ PLAYER_SPEED = 3
 
 # constantes de los enemigos
 ENEMY_LAYER = 3
-PLAYER_SPEED = 3
+ENEMY_SPEED = 2
 
 # constantes de los muros
 BLOCK_LAYER = 2
@@ -19,14 +19,15 @@ BLOCK_LAYER = 2
 GROUND_LAYER = 1
 
 # colores
-RED = (255, 0, 0)
 BLACK = (0, 0, 0)
+RED = (255, 0, 0)
 BLUE = (0, 0, 255)
+WHITE = (255, 255, 255)
 
 # mapa
 TILEMAP = [
     'BBBBBBBBBBBBBBBBBBBB',
-    'B..................B',
+    'B..E...............B',
     'B..................B',
     'B....BBB...........B',
     'B..................B',
@@ -35,7 +36,7 @@ TILEMAP = [
     'B..................B',
     'B.....BBB..........B',
     'B.......B..........B',
-    'B.......B..........B',
+    'B.......B.....E....B',
     'B..................B',
     'B..................B',
     'B..................B',
