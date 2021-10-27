@@ -1,6 +1,6 @@
 # constantes de la ventana
-WIN_WIDTH = 640
-WIN_HEIGHT = 480
+WIN_WIDTH = 640  # 1366
+WIN_HEIGHT = 480  # 768
 TILESIZE = 32
 FPS = 60
 
