@@ -5,7 +5,11 @@ TILESIZE = 32
 FPS = 60
 
 # constantes del personaje
-PLAYER_LAYER = 3
+PLAYER_LAYER = 4
+PLAYER_SPEED = 3
+
+# constantes de los enemigos
+ENEMY_LAYER = 3
 PLAYER_SPEED = 3
 
 # constantes de los muros
