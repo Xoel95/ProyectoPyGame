@@ -1,7 +1,7 @@
 # constantes de la ventana
-WIN_WIDTH = 640  # 1366
-WIN_HEIGHT = 480  # 768
-TILESIZE = 32
+WIN_WIDTH = 1920  # 1360    640
+WIN_HEIGHT = 1080  # 1020   480
+TILESIZE = 68  # 32
 FPS = 60
 
 # constantes del personaje
@@ -24,7 +24,7 @@ RED = (255, 0, 0)
 BLUE = (0, 0, 255)
 WHITE = (255, 255, 255)
 
-# mapa
+# mapa 20x15
 TILEMAP = [
     'BBBBBBBBBBBBBBBBBBBB',
     'B..E...............B',

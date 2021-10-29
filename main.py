@@ -1,6 +1,4 @@
-import pygame
 import sys
-from config import *
 from sprites import *
 
 class Game:
@@ -8,12 +6,12 @@ class Game:
 	def __init__(self):
 		# función main del juego
 		pygame.init()
-		self.screen = pygame.display.set_mode((WIN_WIDTH, WIN_HEIGHT))
+		self.screen = pygame.display.set_mode((WIN_WIDTH, WIN_HEIGHT), pygame.FULLSCREEN)
 		self.clock = pygame.time.Clock()
 		self.font = pygame.font.Font('fonts/arial.ttf', 32)
 		self.running = True
 
-		self.character_spritesheet = Spritesheet('img/link.png')
+		self.character_spritesheet = Spritesheet('img/character.png')
 		self.terrain_spritesheet = Spritesheet('img/terrain.png')
 		self.enemy_spritesheet = Spritesheet('img/enemy.png')
 		self.attack_spritesheet = Spritesheet('img/attack.png')
@@ -131,7 +129,24 @@ class Game:
 			self.clock.tick(FPS)
 			pygame.display.update()
 
+	def scale_screen_conf(self):
+		# Al poner pantalla completa, podemos tomar el valor del monitor
+		monitor_width = self.screen.get_width()
+		monitor_height = self.screen.get_height()
+		# Calculamos la escala entre ambas fuentes y reajustamos pantalla y fondo
+		scale_width = monitor_width / WIN_WIDTH
+		scale_height = monitor_height / WIN_HEIGHT
+		self.screen = pygame.display.set_mode((monitor_width, monitor_height), pygame.FULLSCREEN)
+		bg_surface = pygame.image.load("img/introbackground.png").convert()
+		pygame.transform.scale(bg_surface, (int(bg_surface.get_width() * scale_width),
+											int(bg_surface.get_height() * scale_height)))
+		bg_surface = pygame.image.load("img/gameover.png").convert()
+		pygame.transform.scale(bg_surface, (int(bg_surface.get_width() * scale_width),
+											int(bg_surface.get_height() * scale_height)))
+
+
 g = Game()
+g.scale_screen_conf()
 g.intro_screen()
 g.new()
 
