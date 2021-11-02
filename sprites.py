@@ -8,13 +8,22 @@ class Spritesheet:
 
     def __init__(self, file):
         # funcion main de las hojas de sprites
-        self.sheet = pygame.image.load(file).convert()
+        self.sheet = pygame.image.load(file).convert_alpha()
 
-    def get_sprite(self, x, y, width, height):
-        # función que coje el sprite especificado dentro de la hoja de sprites y lo prepara para el juego
+    def get_sprite_black(self, x, y, width, height):
+        # función que coje el sprite especificado dentro de la hoja de sprites con fondo negro 
+        # y lo prepara para el juego
         sprite = pygame.Surface([width, height])
         sprite.blit(self.sheet, (0, 0), (x, y, width, height))
         sprite.set_colorkey(BLACK)
+        return sprite
+    
+    def get_sprite_white(self, x, y, width, height):
+        # función que coje el sprite especificado dentro de la hoja de sprites con fondo blanco 
+        # y lo prepara para el juego
+        sprite = pygame.Surface([width, height])
+        sprite.blit(self.sheet, (0, 0), (x, y, width, height))
+        sprite.set_colorkey(WHITE)
         return sprite
 
 
@@ -38,27 +47,27 @@ class Player(pygame.sprite.Sprite):
         self.animation_loop = 1
 
         # image viene de la clase Sprite
-        self.image = self.game.character_spritesheet.get_sprite(0, 2, self.width, self.height)
+        self.image = self.game.character_spritesheet.get_sprite_black(129, 15, self.width, self.height)
 
         self.rect = self.image.get_rect()
         self.rect.x = self.x
         self.rect.y = self.y
 
-        self.down_animations = [self.game.character_spritesheet.get_sprite(0, 2, self.width, self.height),
-                           self.game.character_spritesheet.get_sprite(35, 2, self.width, self.height),
-                           self.game.character_spritesheet.get_sprite(68, 2, self.width, self.height)]
+        self.down_animations = [self.game.character_spritesheet.get_sprite_black(129, 15, self.width, self.height),
+                           self.game.character_spritesheet.get_sprite_black(96, 15, self.width, self.height),
+                           self.game.character_spritesheet.get_sprite_black(160, 15, self.width, self.height)]
 
-        self.up_animations = [self.game.character_spritesheet.get_sprite(3, 34, self.width, self.height),
-                         self.game.character_spritesheet.get_sprite(35, 34, self.width, self.height),
-                         self.game.character_spritesheet.get_sprite(68, 34, self.width, self.height)]
+        self.up_animations = [self.game.character_spritesheet.get_sprite_black(129, 159, self.width, self.height),
+                         self.game.character_spritesheet.get_sprite_black(96, 159, self.width, self.height),
+                         self.game.character_spritesheet.get_sprite_black(160, 159, self.width, self.height)]
 
-        self.left_animations = [self.game.character_spritesheet.get_sprite(3, 98, self.width, self.height),
-                           self.game.character_spritesheet.get_sprite(35, 98, self.width, self.height),
-                           self.game.character_spritesheet.get_sprite(68, 98, self.width, self.height)]
+        self.left_animations = [self.game.character_spritesheet.get_sprite_black(129, 62, self.width, self.height),
+                           self.game.character_spritesheet.get_sprite_black(96, 62, self.width, self.height),
+                           self.game.character_spritesheet.get_sprite_black(160, 62, self.width, self.height)]
 
-        self.right_animations = [self.game.character_spritesheet.get_sprite(3, 66, self.width, self.height),
-                            self.game.character_spritesheet.get_sprite(35, 66, self.width, self.height),
-                            self.game.character_spritesheet.get_sprite(68, 66, self.width, self.height)]
+        self.right_animations = [self.game.character_spritesheet.get_sprite_black(129, 110, self.width, self.height),
+                            self.game.character_spritesheet.get_sprite_black(96, 110, self.width, self.height),
+                            self.game.character_spritesheet.get_sprite_black(160, 110, self.width, self.height)]
 
     def update(self):
         # función que actualiza el personaje
@@ -134,7 +143,7 @@ class Player(pygame.sprite.Sprite):
         # función que produce la animación del personaje
         if self.facing == 'down':
             if self.y_change == 0:
-                self.image = self.game.character_spritesheet.get_sprite(3, 2, self.width, self.height)
+                self.image = self.game.character_spritesheet.get_sprite_black(129, 15, self.width, self.height)
             else:
                 self.image = self.down_animations[math.floor(self.animation_loop)]
                 self.animation_loop += 0.1
@@ -143,7 +152,7 @@ class Player(pygame.sprite.Sprite):
 
         if self.facing == 'up':
             if self.y_change == 0:
-                self.image = self.game.character_spritesheet.get_sprite(3, 34, self.width, self.height)
+                self.image = self.game.character_spritesheet.get_sprite_black(129, 159, self.width, self.height)
             else:
                 self.image = self.up_animations[math.floor(self.animation_loop)]
                 self.animation_loop += 0.1
@@ -152,7 +161,7 @@ class Player(pygame.sprite.Sprite):
 
         if self.facing == 'left':
             if self.x_change == 0:
-                self.image = self.game.character_spritesheet.get_sprite(3, 98, self.width, self.height)
+                self.image = self.game.character_spritesheet.get_sprite_black(129, 62, self.width, self.height)
             else:
                 self.image = self.left_animations[math.floor(self.animation_loop)]
                 self.animation_loop += 0.1
@@ -161,7 +170,7 @@ class Player(pygame.sprite.Sprite):
 
         if self.facing == 'right':
             if self.x_change == 0:
-                self.image = self.game.character_spritesheet.get_sprite(3, 66, self.width, self.height)
+                self.image = self.game.character_spritesheet.get_sprite_black(129, 110, self.width, self.height)
             else:
                 self.image = self.right_animations[math.floor(self.animation_loop)]
                 self.animation_loop += 0.1
@@ -186,33 +195,33 @@ class Enemy(pygame.sprite.Sprite):
         self.x_change = 0
         self.y_change = 0
 
-        self.facing = random.choice(['left', 'right'])
+        self.facing = random.choice(['left', 'right', 'up', 'down'])
         self.animation_loop = 1
         self.movement_loop = 0
         self.max_travel = random.randint(7, 30)
 
-        self.image = self.game.enemy_spritesheet.get_sprite(3, 2, self.width, self.height)
+        self.image = self.game.enemy_spritesheet.get_sprite_white(32, 0, self.width, self.height)
         self.image.set_colorkey(BLACK)
 
         self.rect = self.image.get_rect()
         self.rect.x = self.x
         self.rect.y = self.y
 
-        self.down_animations = [self.game.enemy_spritesheet.get_sprite(3, 2, self.width, self.height),
-                           self.game.enemy_spritesheet.get_sprite(35, 2, self.width, self.height),
-                           self.game.enemy_spritesheet.get_sprite(68, 2, self.width, self.height)]
+        self.down_animations = [self.game.enemy_spritesheet.get_sprite_white(32, 0, self.width, self.height),
+                           self.game.enemy_spritesheet.get_sprite_white(82, 0, self.width, self.height),
+                           self.game.enemy_spritesheet.get_sprite_white(136, 0, self.width, self.height)]
 
-        self.up_animations = [self.game.enemy_spritesheet.get_sprite(3, 34, self.width, self.height),
-                         self.game.enemy_spritesheet.get_sprite(35, 34, self.width, self.height),
-                         self.game.enemy_spritesheet.get_sprite(68, 34, self.width, self.height)]
+        self.up_animations = [self.game.enemy_spritesheet.get_sprite_white(32, 44, self.width, self.height),
+                         self.game.enemy_spritesheet.get_sprite_white(82, 44, self.width, self.height),
+                         self.game.enemy_spritesheet.get_sprite_white(136, 44, self.width, self.height)]
 
-        self.left_animations = [self.game.enemy_spritesheet.get_sprite(3, 98, self.width, self.height),
-                           self.game.enemy_spritesheet.get_sprite(35, 98, self.width, self.height),
-                           self.game.enemy_spritesheet.get_sprite(68, 98, self.width, self.height)]
+        self.left_animations = [self.game.enemy_spritesheet.get_sprite_white(32, 134, self.width, self.height),
+                           self.game.enemy_spritesheet.get_sprite_white(82, 134, self.width, self.height),
+                           self.game.enemy_spritesheet.get_sprite_white(136, 134, self.width, self.height)]
 
-        self.right_animations = [self.game.enemy_spritesheet.get_sprite(3, 66, self.width, self.height),
-                            self.game.enemy_spritesheet.get_sprite(35, 66, self.width, self.height),
-                            self.game.enemy_spritesheet.get_sprite(68, 66, self.width, self.height)]
+        self.right_animations = [self.game.enemy_spritesheet.get_sprite_white(32, 89, self.width, self.height),
+                            self.game.enemy_spritesheet.get_sprite_white(82, 89, self.width, self.height),
+                            self.game.enemy_spritesheet.get_sprite_white(136, 89, self.width, self.height)]
 
     def update(self):
         # función que actualiza los enemigos
@@ -220,7 +229,9 @@ class Enemy(pygame.sprite.Sprite):
         self.animate()
 
         self.rect.x += self.x_change
+        self.collide_blocks('x')
         self.rect.y += self.y_change
+        self.collide_blocks('y')
 
         self.x_change = 0
         self.y_change = 0
@@ -239,11 +250,23 @@ class Enemy(pygame.sprite.Sprite):
             if self.movement_loop >= self.max_travel:
                 self.facing = 'left'
 
+        if self.facing == 'up':
+            self.y_change -= ENEMY_SPEED
+            self.movement_loop -= 1
+            if self.movement_loop <= -self.max_travel:
+                self.facing = 'down'
+
+        if self.facing == 'down':
+            self.y_change += ENEMY_SPEED
+            self.movement_loop += 1
+            if self.movement_loop >= self.max_travel:
+                self.facing = 'up'
+
     def animate(self):
         # función que produce las animaciones de los enemigos
         if self.facing == 'down':
             if self.y_change == 0:
-                self.image = self.game.enemy_spritesheet.get_sprite(3, 2, self.width, self.height)
+                self.image = self.game.enemy_spritesheet.get_sprite_white(32, 0, self.width, self.height)
             else:
                 self.image = self.down_animations[math.floor(self.animation_loop)]
                 self.animation_loop += 0.1
@@ -252,7 +275,7 @@ class Enemy(pygame.sprite.Sprite):
 
         if self.facing == 'up':
             if self.y_change == 0:
-                self.image = self.game.enemy_spritesheet.get_sprite(3, 34, self.width, self.height)
+                self.image = self.game.enemy_spritesheet.get_sprite_white(32, 44, self.width, self.height)
             else:
                 self.image = self.up_animations[math.floor(self.animation_loop)]
                 self.animation_loop += 0.1
@@ -261,7 +284,7 @@ class Enemy(pygame.sprite.Sprite):
 
         if self.facing == 'left':
             if self.x_change == 0:
-                self.image = self.game.enemy_spritesheet.get_sprite(3, 98, self.width, self.height)
+                self.image = self.game.enemy_spritesheet.get_sprite_white(32, 134, self.width, self.height)
             else:
                 self.image = self.left_animations[math.floor(self.animation_loop)]
                 self.animation_loop += 0.1
@@ -270,12 +293,37 @@ class Enemy(pygame.sprite.Sprite):
 
         if self.facing == 'right':
             if self.x_change == 0:
-                self.image = self.game.enemy_spritesheet.get_sprite(3, 66, self.width, self.height)
+                self.image = self.game.enemy_spritesheet.get_sprite_white(32, 89, self.width, self.height)
             else:
                 self.image = self.right_animations[math.floor(self.animation_loop)]
                 self.animation_loop += 0.1
                 if self.animation_loop >= 3:
                     self.animation_loop = 1
+
+    def collide_blocks(self, direction):
+        # función que produce las colisiones de los enemigos con los muros
+        if direction == 'x':
+            hits = pygame.sprite.spritecollide(self, self.game.blocks, False)
+            if hits:
+                if self.x_change > 0:
+                    self.rect.x = hits[0].rect.left - self.rect.width
+                    for sprite in self.game.all_sprites:
+                        sprite.rect.x += ENEMY_SPEED
+                if self.x_change < 0:
+                    self.rect.x = hits[0].rect.right
+                    for sprite in self.game.all_sprites:
+                        sprite.rect.x -= ENEMY_SPEED
+        if direction == 'y':
+            hits = pygame.sprite.spritecollide(self, self.game.blocks, False)
+            if hits:
+                if self.y_change > 0:
+                    self.rect.y = hits[0].rect.top - self.rect.height
+                    for sprite in self.game.all_sprites:
+                        sprite.rect.y += ENEMY_SPEED
+                if self.y_change < 0:
+                    self.rect.y = hits[0].rect.bottom
+                    for sprite in self.game.all_sprites:
+                        sprite.rect.y -= ENEMY_SPEED
 
 
 class Block(pygame.sprite.Sprite):
@@ -292,7 +340,7 @@ class Block(pygame.sprite.Sprite):
         self.width = TILESIZE
         self.height = TILESIZE
 
-        self.image = self.game.terrain_spritesheet.get_sprite(960, 448, self.width, self.height)
+        self.image = self.game.terrain_spritesheet.get_sprite_black(705, 160, self.width, self.height)
 
         self.rect = self.image.get_rect()
         self.rect.x = self.x
@@ -313,7 +361,7 @@ class Ground(pygame.sprite.Sprite):
         self.width = TILESIZE
         self.height = TILESIZE
 
-        self.image = self.game.terrain_spritesheet.get_sprite(64, 352, self.width, self.height)
+        self.image = self.game.terrain_spritesheet.get_sprite_black(805, 510, self.width, self.height)
 
         self.rect = self.image.get_rect()
         self.rect.x = self.x
@@ -369,35 +417,35 @@ class Attack(pygame.sprite.Sprite):
 
         self.animation_loop = 0
 
-        self.image = self.game.attack_spritesheet.get_sprite(0, 0, self.width, self.height)
+        self.image = self.game.attack_spritesheet.get_sprite_black(0, 0, self.width, self.height)
 
         self.rect = self.image.get_rect()
         self.rect.x = self.x
         self.rect.y = self.y
 
-        self.down_animations = [self.game.attack_spritesheet.get_sprite(0, 32, self.width, self.height),
-                            self.game.attack_spritesheet.get_sprite(32, 32, self.width, self.height),
-                            self.game.attack_spritesheet.get_sprite(64, 32, self.width, self.height),
-                            self.game.attack_spritesheet.get_sprite(96, 32, self.width, self.height),
-                            self.game.attack_spritesheet.get_sprite(128, 32, self.width, self.height)]
+        self.down_animations = [self.game.attack_spritesheet.get_sprite_black(0, 32, self.width, self.height),
+                            self.game.attack_spritesheet.get_sprite_black(32, 32, self.width, self.height),
+                            self.game.attack_spritesheet.get_sprite_black(64, 32, self.width, self.height),
+                            self.game.attack_spritesheet.get_sprite_black(96, 32, self.width, self.height),
+                            self.game.attack_spritesheet.get_sprite_black(128, 32, self.width, self.height)]
 
-        self.up_animations = [self.game.attack_spritesheet.get_sprite(0, 0, self.width, self.height),
-                            self.game.attack_spritesheet.get_sprite(32, 0, self.width, self.height),
-                            self.game.attack_spritesheet.get_sprite(64, 0, self.width, self.height),
-                            self.game.attack_spritesheet.get_sprite(96, 0, self.width, self.height),
-                            self.game.attack_spritesheet.get_sprite(128, 0, self.width, self.height)]
+        self.up_animations = [self.game.attack_spritesheet.get_sprite_black(0, 0, self.width, self.height),
+                            self.game.attack_spritesheet.get_sprite_black(32, 0, self.width, self.height),
+                            self.game.attack_spritesheet.get_sprite_black(64, 0, self.width, self.height),
+                            self.game.attack_spritesheet.get_sprite_black(96, 0, self.width, self.height),
+                            self.game.attack_spritesheet.get_sprite_black(128, 0, self.width, self.height)]
 
-        self.left_animations = [self.game.attack_spritesheet.get_sprite(0, 96, self.width, self.height),
-                           self.game.attack_spritesheet.get_sprite(32, 96, self.width, self.height),
-                           self.game.attack_spritesheet.get_sprite(64, 96, self.width, self.height),
-                           self.game.attack_spritesheet.get_sprite(96, 96, self.width, self.height),
-                           self.game.attack_spritesheet.get_sprite(128, 96, self.width, self.height)]
+        self.left_animations = [self.game.attack_spritesheet.get_sprite_black(0, 96, self.width, self.height),
+                           self.game.attack_spritesheet.get_sprite_black(32, 96, self.width, self.height),
+                           self.game.attack_spritesheet.get_sprite_black(64, 96, self.width, self.height),
+                           self.game.attack_spritesheet.get_sprite_black(96, 96, self.width, self.height),
+                           self.game.attack_spritesheet.get_sprite_black(128, 96, self.width, self.height)]
 
-        self.right_animations = [self.game.attack_spritesheet.get_sprite(0, 64, self.width, self.height),
-                            self.game.attack_spritesheet.get_sprite(32, 64, self.width, self.height),
-                            self.game.attack_spritesheet.get_sprite(64, 64, self.width, self.height),
-                            self.game.attack_spritesheet.get_sprite(96, 64, self.width, self.height),
-                            self.game.attack_spritesheet.get_sprite(128, 64, self.width, self.height)]
+        self.right_animations = [self.game.attack_spritesheet.get_sprite_black(0, 64, self.width, self.height),
+                            self.game.attack_spritesheet.get_sprite_black(32, 64, self.width, self.height),
+                            self.game.attack_spritesheet.get_sprite_black(64, 64, self.width, self.height),
+                            self.game.attack_spritesheet.get_sprite_black(96, 64, self.width, self.height),
+                            self.game.attack_spritesheet.get_sprite_black(128, 64, self.width, self.height)]
 
     def update(self):
         # función que actualiza los ataques

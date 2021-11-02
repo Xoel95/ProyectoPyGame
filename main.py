@@ -13,9 +13,9 @@ class Game:
 		self.font = pygame.font.Font('fonts/arial.ttf', 32)
 		self.running = True
 
-		self.character_spritesheet = Spritesheet('img/character.png')
+		self.character_spritesheet = Spritesheet('img/characters.png')
 		self.terrain_spritesheet = Spritesheet('img/terrain.png')
-		self.enemy_spritesheet = Spritesheet('img/enemy.png')
+		self.enemy_spritesheet = Spritesheet('img/enemies.png')
 		self.attack_spritesheet = Spritesheet('img/attack.png')
 		self.intro_background = pygame.image.load('img/introbackground.png')
 		self.go_background = pygame.image.load('img/gameover.png')
