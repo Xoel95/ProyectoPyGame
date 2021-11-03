@@ -84,8 +84,8 @@ class Game:
 	def game_over(self):
 		# gestiona el fin del juego
 		text = self.font.render('Game Over', True, WHITE)
-		text_rect = text.get_rect(center=(WIN_WIDTH / 2, WIN_HEIGHT / 2))
-		restart_button = Button(10, WIN_HEIGHT - 60, 120, 50, WHITE, BLACK, 'Restart', 32)
+		text_rect = text.get_rect(center=(WIN_WIDTH / 2, WIN_HEIGHT / 2 - 30))
+		restart_button = Button(WIN_WIDTH / 2 - 60, WIN_HEIGHT - 120, 120, 50, WHITE, BLACK, 'Restart', 32)
 
 		for sprite in self.all_sprites:
 			sprite.kill()
@@ -110,9 +110,9 @@ class Game:
 	def intro_screen(self):
 		# crea la ventana inicial del juego
 		intro = True
-		title = self.font.render('Awesome Game', True, BLACK)
-		title_rect = title.get_rect(x=10, y=10)
-		play_button = Button(10, 50, 100, 50, WHITE, BLACK, 'Play', 32)
+		title = self.font.render('RPG Brawler', True, BLACK)
+		title_rect = title.get_rect(center=(WIN_WIDTH / 2, WIN_HEIGHT / 2 - 30))
+		play_button = Button(WIN_WIDTH / 2 - 60, WIN_HEIGHT / 2 + 30, 120, 50, WHITE, BLACK, 'Start', 32)
 
 		while intro:
 			for event in pygame.event.get():
