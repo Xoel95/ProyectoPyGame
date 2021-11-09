@@ -79,8 +79,6 @@ class Game:
 			self.update()
 			self.draw()
 
-
-
 	def game_over(self):
 		# gestiona el fin del juego
 		text = self.font.render('Game Over', True, WHITE)
