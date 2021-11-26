@@ -63,6 +63,7 @@ class Game:
 	def update(self):
 		# actualiza los datos de la ventana de la partida cuando se ejecuta
 		self.all_sprites.update()
+		self.player.kills = self.player.kills
 
 
 	def draw(self):
@@ -82,6 +83,32 @@ class Game:
 	def game_over(self):
 		# gestiona el fin del juego
 		text = self.font.render('Game Over', True, WHITE)
+		text_rect = text.get_rect(center=(WIN_WIDTH / 2, WIN_HEIGHT / 2 - 30))
+		restart_button = Button(WIN_WIDTH / 2 - 60, WIN_HEIGHT - 120, 120, 50, WHITE, BLACK, 'Restart', 32)
+
+		for sprite in self.all_sprites:
+			sprite.kill()
+
+		while self.running:
+			for event in pygame.event.get():
+				if event.type == pygame.QUIT:
+					self.running = False
+
+			mouse_pos = pygame.mouse.get_pos()
+			mouse_pressed = pygame.mouse.get_pressed()
+
+			if restart_button.is_pressed(mouse_pos, mouse_pressed):
+				self.new()
+				self.main()
+			self.screen.blit(self.go_background, (0, 0))
+			self.screen.blit(text, text_rect)
+			self.screen.blit(restart_button.image, restart_button.rect)
+			self.clock.tick(FPS)
+			pygame.display.update()
+
+	def win(self):
+		# gestiona el fin del juego
+		text = self.font.render('Winner', True, WHITE)
 		text_rect = text.get_rect(center=(WIN_WIDTH / 2, WIN_HEIGHT / 2 - 30))
 		restart_button = Button(WIN_WIDTH / 2 - 60, WIN_HEIGHT - 120, 120, 50, WHITE, BLACK, 'Restart', 32)
 
