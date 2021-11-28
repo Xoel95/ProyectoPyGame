@@ -46,7 +46,7 @@ class Player(pygame.sprite.Sprite):
 
         self.facing = 'down'
         self.animation_loop = 1
-        self.kills = 0
+        # self.kills = 0
 
         # image viene de la clase Sprite
         self.image = self.game.character_spritesheet.get_sprite_black(129, 15, self.width, self.height)
@@ -229,7 +229,6 @@ class Enemy(pygame.sprite.Sprite):
         # función que actualiza los enemigos
         self.movement()
         self.animate()
-        self.collide_attacks()
 
         self.rect.x += self.x_change
         self.collide_blocks('x')
@@ -264,13 +263,6 @@ class Enemy(pygame.sprite.Sprite):
             self.movement_loop += 1
             if self.movement_loop >= self.max_travel:
                 self.facing = 'up'
-
-    def collide_attacks(self):
-        # función que produce las colisiones del ataque del personaje con los enemigos
-        hits = pygame.sprite.spritecollide(self, self.game.attacks, True)
-        if hits != []:
-            print(hits)
-            self.kill()
 
     def animate(self):
         # función que produce las animaciones de los enemigos
@@ -418,7 +410,7 @@ class Attack(pygame.sprite.Sprite):
         self.height = TILESIZE
 
         self.animation_loop = 0
-        kills = pygame.sprite.spritecollide(self, self.game.enemies, True)
+        # kills = pygame.sprite.spritecollide(self, self.game.enemies, True)
 
         self.image = self.game.attack_spritesheet.get_sprite_black(0, 0, self.width, self.height)
 

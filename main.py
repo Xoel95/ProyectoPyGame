@@ -63,7 +63,7 @@ class Game:
 	def update(self):
 		# actualiza los datos de la ventana de la partida cuando se ejecuta
 		self.all_sprites.update()
-		self.player.kills = self.player.kills
+		# self.player.kills = self.player.kills
 
 
 	def draw(self):
