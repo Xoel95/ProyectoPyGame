@@ -13,6 +13,7 @@ class Game:
 		self.font = pygame.font.Font('fonts/arial.ttf', 32)
 		self.running = True
 
+
 		self.character_spritesheet = Spritesheet('img/characters.png')
 		self.terrain_spritesheet = Spritesheet('img/terrain.png')
 		self.enemy_spritesheet = Spritesheet('img/enemies.png')
@@ -39,6 +40,8 @@ class Game:
 		self.blocks = pygame.sprite.LayeredUpdates()
 		self.enemies = pygame.sprite.LayeredUpdates()
 		self.attacks = pygame.sprite.LayeredUpdates()
+		pygame.mixer.music.load("music/legend-of-zelda-the-nes-music-overworld-theme.mp3")
+		pygame.mixer.music.set_volume(0.7)
 
 		self.create_tilemap()
 
