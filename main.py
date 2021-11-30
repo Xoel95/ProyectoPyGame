@@ -3,6 +3,7 @@ import sys
 from config import *
 from sprites import *
 
+
 class Game:
 
 	def __init__(self):
@@ -12,7 +13,6 @@ class Game:
 		self.clock = pygame.time.Clock()
 		self.font = pygame.font.Font('fonts/arial.ttf', 32)
 		self.running = True
-
 
 		self.character_spritesheet = Spritesheet('img/characters.png')
 		self.terrain_spritesheet = Spritesheet('img/terrain.png')
