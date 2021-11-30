@@ -13,6 +13,8 @@ class Game:
 		self.clock = pygame.time.Clock()
 		self.font = pygame.font.Font('fonts/arial.ttf', 32)
 		self.running = True
+		self.puntuation = 0
+		self.winner_count = 0
 
 		self.character_spritesheet = Spritesheet('img/characters.png')
 		self.terrain_spritesheet = Spritesheet('img/terrain.png')
@@ -21,8 +23,8 @@ class Game:
 		self.intro_background = pygame.image.load('img/introbackground.png')
 		self.go_background = pygame.image.load('img/gameover.png')
 
-	def create_tilemap(self):
-		for i, row in enumerate(TILEMAP):
+	def create_tilemap(self, tilemap):
+		for i, row in enumerate(tilemap):
 			for j, column in enumerate(row):
 				Ground(self, j, i)
 				if column == 'B':
@@ -44,7 +46,7 @@ class Game:
 		pygame.mixer.music.set_volume(0.7)
 		pygame.mixer.music.play(1)
 
-		self.create_tilemap()
+		self.create_tilemap(TILEMAP)
 
 	def events(self):
 		# controla los eventos de la partida
@@ -68,6 +70,16 @@ class Game:
 		# actualiza los datos de la ventana de la partida cuando se ejecuta
 		self.all_sprites.update()
 		# self.player.kills = self.player.kills
+		if not self.enemies:
+			for sprite in self.all_sprites:
+				sprite.kill()
+			self.winner_count += 1
+			if self.winner_count == 1:
+				self.create_tilemap(TILEMAP2)
+			self.puntuation += 50
+			print(self.puntuation)
+			if self.winner_count == 2:
+				self.win()
 
 
 	def draw(self):
@@ -87,11 +99,15 @@ class Game:
 	def game_over(self):
 		# gestiona el fin del juego
 		text = self.font.render('Game Over', True, WHITE)
-		text_rect = text.get_rect(center=(WIN_WIDTH / 2, WIN_HEIGHT / 2 - 30))
+		text_rect = text.get_rect(center=(WIN_WIDTH / 2, WIN_HEIGHT / 2 - 90))
+		puntuation = self.font.render("Puntuación: " + str(self.puntuation), True, WHITE)
+		puntuation_rect = puntuation.get_rect(center=(WIN_WIDTH / 2, WIN_HEIGHT / 2 - 30))
 		restart_button = Button(WIN_WIDTH / 2 - 60, WIN_HEIGHT - 120, 120, 50, WHITE, BLACK, 'Restart', 32)
 		pygame.mixer.music.load("music/classic-mario-death-tune.mp3")
 		pygame.mixer.music.set_volume(0.7)
 		pygame.mixer.music.play(1)
+		self.winner_count = 0
+		self.puntuation = 0
 
 		for sprite in self.all_sprites:
 			sprite.kill()
@@ -109,15 +125,23 @@ class Game:
 				self.main()
 			self.screen.blit(self.go_background, (0, 0))
 			self.screen.blit(text, text_rect)
+			self.screen.blit(puntuation, puntuation_rect)
 			self.screen.blit(restart_button.image, restart_button.rect)
 			self.clock.tick(FPS)
 			pygame.display.update()
 
 	def win(self):
-		# gestiona el fin del juego
+		# gestiona la victoria del juego
 		text = self.font.render('Winner', True, WHITE)
-		text_rect = text.get_rect(center=(WIN_WIDTH / 2, WIN_HEIGHT / 2 - 30))
+		text_rect = text.get_rect(center=(WIN_WIDTH / 2, WIN_HEIGHT / 2 - 90))
+		puntuation = self.font.render("Puntuación: " + str(self.puntuation), True, WHITE)
+		puntuation_rect = puntuation.get_rect(center=(WIN_WIDTH / 2, WIN_HEIGHT / 2 - 30))
 		restart_button = Button(WIN_WIDTH / 2 - 60, WIN_HEIGHT - 120, 120, 50, WHITE, BLACK, 'Restart', 32)
+		pygame.mixer.music.load("music/two-steps-from-hell-victory.mp3")
+		pygame.mixer.music.set_volume(0.7)
+		pygame.mixer.music.play(1)
+		self.winner_count = 0
+		self.puntuation = 0
 
 		for sprite in self.all_sprites:
 			sprite.kill()
@@ -135,6 +159,7 @@ class Game:
 				self.main()
 			self.screen.blit(self.go_background, (0, 0))
 			self.screen.blit(text, text_rect)
+			self.screen.blit(puntuation, puntuation_rect)
 			self.screen.blit(restart_button.image, restart_button.rect)
 			self.clock.tick(FPS)
 			pygame.display.update()
