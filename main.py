@@ -42,6 +42,7 @@ class Game:
 		self.attacks = pygame.sprite.LayeredUpdates()
 		pygame.mixer.music.load("music/legend-of-zelda-the-nes-music-overworld-theme.mp3")
 		pygame.mixer.music.set_volume(0.7)
+		pygame.mixer.music.play(1)
 
 		self.create_tilemap()
 
@@ -90,6 +91,7 @@ class Game:
 		restart_button = Button(WIN_WIDTH / 2 - 60, WIN_HEIGHT - 120, 120, 50, WHITE, BLACK, 'Restart', 32)
 		pygame.mixer.music.load("music/classic-mario-death-tune.mp3")
 		pygame.mixer.music.set_volume(0.7)
+		pygame.mixer.music.play(1)
 
 		for sprite in self.all_sprites:
 			sprite.kill()
@@ -145,6 +147,7 @@ class Game:
 		play_button = Button(WIN_WIDTH / 2 - 60, WIN_HEIGHT / 2 + 30, 120, 50, WHITE, BLACK, 'Start', 32)
 		pygame.mixer.music.load("music/dragon-quest-overture-orchestral.mp3")
 		pygame.mixer.music.set_volume(0.7)
+		pygame.mixer.music.play(1)
 
 		while intro:
 			for event in pygame.event.get():

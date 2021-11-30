@@ -403,6 +403,9 @@ class Attack(pygame.sprite.Sprite):
         self._layer = PLAYER_LAYER
         self.groups = self.game.all_sprites, self.game.attacks
         pygame.sprite.Sprite.__init__(self, self.groups)
+        pygame.mixer.music.load("sfx/espada-corta-aire.mp3")
+        pygame.mixer.music.set_volume(1)
+        pygame.mixer.music.play()
 
         self.x = x
         self.y = y
@@ -450,6 +453,9 @@ class Attack(pygame.sprite.Sprite):
     def collide(self):
         # función que produce las colisiones del ataque del personaje con los enemigos
         hits = pygame.sprite.spritecollide(self, self.game.enemies, True)
+        pygame.mixer.music.load("sfx/espada-corta-enemigo.mp3")
+        pygame.mixer.music.set_volume(1)
+        pygame.mixer.music.play()
 
     def animate(self):
         # función que produce las animaciones del ataque del personaje
