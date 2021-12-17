@@ -1,6 +1,4 @@
-import pygame
 import sys
-from config import *
 from sprites import *
 
 
@@ -8,12 +6,18 @@ class Game:
 
 	def __init__(self):
 		# función main del juego
+		self.attacks = None
+		self.enemies = None
+		self.blocks = None
+		self.all_sprites = None
+		self.playing = None
+		self.puntuation = 0
 		pygame.init()
 		self.screen = pygame.display.set_mode((WIN_WIDTH, WIN_HEIGHT))
 		self.clock = pygame.time.Clock()
 		self.font = pygame.font.Font('fonts/arial.ttf', 32)
 		self.running = True
-		self.puntuation = 0
+
 		self.winner_count = 0
 
 		self.character_spritesheet = Spritesheet('img/characters.png')
@@ -81,7 +85,6 @@ class Game:
 			if self.winner_count == 2:
 				self.win()
 
-
 	def draw(self):
 		# vuelve a dibujar la ventana de la partida con los datos actualizados cuando se ejecuta
 		self.screen.fill(BLACK)
@@ -97,17 +100,8 @@ class Game:
 			self.draw()
 
 	def game_over(self):
+
 		# gestiona el fin del juego
-		text = self.font.render('Game Over', True, WHITE)
-		text_rect = text.get_rect(center=(WIN_WIDTH / 2, WIN_HEIGHT / 2 - 90))
-		puntuation = self.font.render("Puntuación: " + str(self.puntuation), True, WHITE)
-		puntuation_rect = puntuation.get_rect(center=(WIN_WIDTH / 2, WIN_HEIGHT / 2 - 30))
-		restart_button = Button(WIN_WIDTH / 2 - 60, WIN_HEIGHT - 120, 120, 50, WHITE, BLACK, 'Restart', 32)
-		pygame.mixer.music.load("music/classic-mario-death-tune.mp3")
-		pygame.mixer.music.set_volume(0.7)
-		pygame.mixer.music.play(1)
-		self.winner_count = 0
-		self.puntuation = 0
 
 		for sprite in self.all_sprites:
 			sprite.kill()
@@ -119,29 +113,32 @@ class Game:
 
 			mouse_pos = pygame.mouse.get_pos()
 			mouse_pressed = pygame.mouse.get_pressed()
+			text = self.font.render('Game Over', True, WHITE)
+			text_rect = text.get_rect(center=(WIN_WIDTH / 2, WIN_HEIGHT / 2 - 90))
+			puntuation = self.font.render("Puntuación: " + str(self.puntuation), True, WHITE)
+			puntuation_rect = puntuation.get_rect(center=(WIN_WIDTH / 2, WIN_HEIGHT / 2 - 30))
+			restart_button = Button(WIN_WIDTH / 2 - 60, WIN_HEIGHT - 120, 120, 50, WHITE, BLACK, 'Restart', 32)
+			pygame.mixer.music.load("music/classic-mario-death-tune.mp3")
+			pygame.mixer.music.set_volume(0.7)
+			pygame.mixer.music.play(1)
 
-			if restart_button.is_pressed(mouse_pos, mouse_pressed):
-				self.new()
-				self.main()
 			self.screen.blit(self.go_background, (0, 0))
 			self.screen.blit(text, text_rect)
 			self.screen.blit(puntuation, puntuation_rect)
 			self.screen.blit(restart_button.image, restart_button.rect)
 			self.clock.tick(FPS)
+
+			if restart_button.is_pressed(mouse_pos, mouse_pressed):
+				self.puntuation = 0
+				self.winner_count = 0
+				self.new()
+				self.main()
+
 			pygame.display.update()
 
 	def win(self):
+
 		# gestiona la victoria del juego
-		text = self.font.render('Winner', True, WHITE)
-		text_rect = text.get_rect(center=(WIN_WIDTH / 2, WIN_HEIGHT / 2 - 90))
-		puntuation = self.font.render("Puntuación: " + str(self.puntuation), True, WHITE)
-		puntuation_rect = puntuation.get_rect(center=(WIN_WIDTH / 2, WIN_HEIGHT / 2 - 30))
-		restart_button = Button(WIN_WIDTH / 2 - 60, WIN_HEIGHT - 120, 120, 50, WHITE, BLACK, 'Restart', 32)
-		pygame.mixer.music.load("music/two-steps-from-hell-victory.mp3")
-		pygame.mixer.music.set_volume(0.7)
-		pygame.mixer.music.play(1)
-		self.winner_count = 0
-		self.puntuation = 0
 
 		for sprite in self.all_sprites:
 			sprite.kill()
@@ -153,15 +150,27 @@ class Game:
 
 			mouse_pos = pygame.mouse.get_pos()
 			mouse_pressed = pygame.mouse.get_pressed()
+			text = self.font.render('Winner', True, WHITE)
+			text_rect = text.get_rect(center=(WIN_WIDTH / 2, WIN_HEIGHT / 2 - 90))
+			puntuation = self.font.render("Puntuación: " + str(self.puntuation), True, WHITE)
+			puntuation_rect = puntuation.get_rect(center=(WIN_WIDTH / 2, WIN_HEIGHT / 2 - 30))
+			restart_button = Button(WIN_WIDTH / 2 - 60, WIN_HEIGHT - 120, 120, 50, WHITE, BLACK, 'Restart', 32)
+			pygame.mixer.music.load("music/two-steps-from-hell-victory.mp3")
+			pygame.mixer.music.set_volume(0.7)
+			pygame.mixer.music.play(1)
 
-			if restart_button.is_pressed(mouse_pos, mouse_pressed):
-				self.new()
-				self.main()
 			self.screen.blit(self.go_background, (0, 0))
 			self.screen.blit(text, text_rect)
 			self.screen.blit(puntuation, puntuation_rect)
 			self.screen.blit(restart_button.image, restart_button.rect)
 			self.clock.tick(FPS)
+
+			if restart_button.is_pressed(mouse_pos, mouse_pressed):
+				self.puntuation = 0
+				self.winner_count = 0
+				self.new()
+				self.main()
+
 			pygame.display.update()
 
 	def intro_screen(self):
@@ -190,6 +199,7 @@ class Game:
 			self.screen.blit(play_button.image, play_button.rect)
 			self.clock.tick(FPS)
 			pygame.display.update()
+
 
 g = Game()
 g.intro_screen()
