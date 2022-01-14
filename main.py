@@ -29,14 +29,15 @@ class Game:
 
 	def create_tilemap(self, tilemap):
 		for i, row in enumerate(tilemap):
-			for j, column in enumerate(row):
-				Ground(self, j, i)
-				if column == 'B':
-					Block(self, j, i)
-				if column == 'E':
-					Enemy(self, j, i)
-				if column == 'P':
-					self.player = Player(self, j, i)
+			if i > 2:
+				for j, column in enumerate(row):
+					Ground(self, j, i)
+					if column == 'B':
+						Block(self, j, i)
+					if column == 'E':
+						Enemy(self, j, i)
+					if column == 'P':
+						self.player = Player(self, j, i)
 
 	def new(self):
 		# función para iniciar una nueva partida
