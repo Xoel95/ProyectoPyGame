@@ -1,6 +1,6 @@
 # constantes de la ventana
 WIN_WIDTH = 640
-WIN_HEIGHT = 576   # 480
+WIN_HEIGHT = 544   # 480
 TILESIZE = 32
 FPS = 60
 
@@ -24,11 +24,10 @@ RED = (255, 0, 0)
 BLUE = (0, 0, 255)
 WHITE = (255, 255, 255)
 
-# mapa inicial 20x20
+# mapa inicial 20x17
 TILEMAP = [
     '....................',
     '....................',
-    '....................',
     'BBBBBBBBBBBBBBBBBBBB',
     'B........E.........B',
     'B..................B',
@@ -46,11 +45,10 @@ TILEMAP = [
     'BBBBBBBBBBBBBBBBBBBB',
 ]
 
-# segundo mapa 20x20
+# segundo mapa 20x17
 TILEMAP2 = [
     '....................',
     '....................',
-    '....................',
     'BBBBBBBBBBBBBBBBBBBB',
     'B........E.........B',
     'B..................B',
@@ -68,11 +66,10 @@ TILEMAP2 = [
     'BBBBBBBBBBBBBBBBBBBB',
 ]
 
-# segundo mapa 20x20
+# segundo mapa 20x17
 TILEMAP3 = [
     '....................',
     '....................',
-    '....................',
     'BBBBBBBBBBBBBBBBBBBB',
     'B........E.........B',
     'B..................B',
@@ -90,11 +87,10 @@ TILEMAP3 = [
     'BBBBBBBBBBBBBBBBBBBB',
 ]
 
-# segundo mapa 20x20
+# segundo mapa 20x17
 TILEMAP4 = [
     '....................',
     '....................',
-    '....................',
     'BBBBBBBBBBBBBBBBBBBB',
     'B........E.........B',
     'B..................B',
@@ -112,11 +108,10 @@ TILEMAP4 = [
     'BBBBBBBBBBBBBBBBBBBB',
 ]
 
-# segundo mapa 20x20
+# segundo mapa 20x17
 TILEMAP5 = [
     '....................',
     '....................',
-    '....................',
     'BBBBBBBBBBBBBBBBBBBB',
     'B........E.........B',
     'B..................B',
@@ -134,9 +129,8 @@ TILEMAP5 = [
     'BBBBBBBBBBBBBBBBBBBB',
 ]
 
-# segundo mapa 20x20
+# segundo mapa 20x17
 TILEMAP6 = [
-    '....................',
     '....................',
     '....................',
     'BBBBBBBBBBBBBBBBBBBB',

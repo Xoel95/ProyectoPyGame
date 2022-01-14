@@ -29,7 +29,7 @@ class Game:
 
 	def create_tilemap(self, tilemap):
 		for i, row in enumerate(tilemap):
-			if i > 2:
+			if i > 1:
 				for j, column in enumerate(row):
 					Ground(self, j, i)
 					if column == 'B':
