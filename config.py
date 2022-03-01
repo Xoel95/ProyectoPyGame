@@ -1,6 +1,6 @@
 # constantes de la ventana
 WIN_WIDTH = 640
-WIN_HEIGHT = 544   # 480
+WIN_HEIGHT = 480
 TILESIZE = 32
 FPS = 60
 
@@ -24,10 +24,8 @@ RED = (255, 0, 0)
 BLUE = (0, 0, 255)
 WHITE = (255, 255, 255)
 
-# mapa inicial 20x17
+# mapa inicial 20x15
 TILEMAP = [
-    '....................',
-    '....................',
     'BBBBBBBBBBBBBBBBBBBB',
     'B........E.........B',
     'B..................B',
@@ -47,8 +45,6 @@ TILEMAP = [
 
 # segundo mapa 20x17
 TILEMAP2 = [
-    '....................',
-    '....................',
     'BBBBBBBBBBBBBBBBBBBB',
     'B........E.........B',
     'B..................B',
