@@ -452,7 +452,7 @@ class Attack(pygame.sprite.Sprite):
         if hits:
             corte = pygame.mixer.Sound("sfx/espada-corta-enemigo.wav")
             corte.set_volume(0.7)
-            corte.play()
+            corte.play(1)
 
     def animate(self):
         # función que produce las animaciones del ataque del personaje

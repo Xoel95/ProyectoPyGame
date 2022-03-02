@@ -52,8 +52,8 @@ class Connection:
             if query.exec_():
                 while query.next():
                     scores.append(query.value(0))
-                maxScore = str(scores[0])
-                return maxScore
+                max_score = str(scores[0])
+                return max_score
             else:
                 print(scores)
 
