@@ -260,6 +260,9 @@ class Game:
 				print(max_score)
 				while max_score_show:
 					for event in pygame.event.get():
+						if event.type == pygame.QUIT:
+							pygame.quit()
+							sys.exit()
 						if event.type == pygame.KEYDOWN:
 							if event.key == pygame.K_RETURN:
 								max_score_show = False
@@ -280,11 +283,15 @@ class Game:
 				controls_show = True
 				while controls_show:
 					for event in pygame.event.get():
+						if event.type == pygame.QUIT:
+							pygame.quit()
+							sys.exit()
 						if event.type == pygame.KEYDOWN:
 							if event.key == pygame.K_RETURN:
 								controls_show = False
 							if event.key == pygame.K_BACKSPACE:
 								controls_show = False
+
 					self.screen.fill(BLACK)
 					controls_text = self.font.render('Controls: ', True, WHITE, BLACK)
 					controls_text_rect = controls_text.get_rect(center=(WIN_WIDTH / 2, WIN_HEIGHT / 2 - 120))
