@@ -451,7 +451,7 @@ class Attack(pygame.sprite.Sprite):
         hits = pygame.sprite.spritecollide(self, self.game.enemies, True)
         if hits:
             corte = pygame.mixer.Sound("sfx/espada-corta-enemigo.wav")
-            corte.set_volume(0.7)
+            corte.set_volume(0.3)
             corte.play()
 
     def animate(self):

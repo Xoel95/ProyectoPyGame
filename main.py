@@ -71,7 +71,7 @@ class Game:
 			if event.type == pygame.KEYDOWN:
 				if event.key == pygame.K_SPACE:
 					corte = pygame.mixer.Sound("sfx/espada-corta-aire.wav")
-					corte.set_volume(1)
+					corte.set_volume(0.3)
 					corte.play()
 					if self.player.facing == 'down':
 						Attack(self, self.player.rect.x, self.player.rect.y + TILESIZE)
