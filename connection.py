@@ -4,6 +4,7 @@ from PyQt5 import QtSql, QtWidgets
 
 class Connection:
     def create_db(filename):
+        # función que crea la base de datos si esta no existe previamente
         try:
             connection = sqlite3.connect(database=filename)
             cursor = connection.cursor()
@@ -14,6 +15,7 @@ class Connection:
             print('La base de datos no ha sido creada.', error)
 
     def db_connect(filedb):
+        # función que conecta el juego a la base de datos
         try:
             db = QtSql.QSqlDatabase.addDatabase("QSQLITE")
             db.setDatabaseName(filedb)
@@ -29,6 +31,7 @@ class Connection:
             print('Error en el módulo de la conexión.', error)
 
     def saveScore(score):
+        # función que guarda la puntuación de la partida en la base de datos
         try:
             query = QtSql.QSqlQuery()
             query.prepare(
@@ -44,6 +47,7 @@ class Connection:
             print('Error en el módulo de guardar la puntuación.', error)
 
     def maxScore():
+        # función que coge la puntuación máxima de la base de datos y la retorna como output
         try:
             scores = []
             query = QtSql.QSqlQuery()

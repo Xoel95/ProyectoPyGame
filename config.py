@@ -62,7 +62,7 @@ TILEMAP2 = [
     'BBBBBBBBBBBBBBBBBBBB',
 ]
 
-# segundo mapa 20x15
+# tercer mapa 20x15
 TILEMAP3 = [
     'BBBBBBBBBBBBBBBBBBBB',
     'B..................B',
@@ -81,7 +81,7 @@ TILEMAP3 = [
     'BBBBBBBBBBBBBBBBBBBB',
 ]
 
-# segundo mapa 20x15
+# cuarto mapa 20x15
 TILEMAP4 = [
     'BBBBBBBBBBBBBBBBBBBB',
     'B..................B',
@@ -100,7 +100,7 @@ TILEMAP4 = [
     'BBBBBBBBBBBBBBBBBBBB',
 ]
 
-# segundo mapa 20x15
+# quinto mapa 20x15
 TILEMAP5 = [
     'BBBBBBBBBBBBBBBBBBBB',
     'B...B....E.........B',
@@ -119,7 +119,7 @@ TILEMAP5 = [
     'BBBBBBBBBBBBBBBBBBBB',
 ]
 
-# segundo mapa 20x15
+# sexto mapa 20x15
 TILEMAP6 = [
     'BBBBBBBBBBBBBBBBBBBB',
     'B.........E........B',

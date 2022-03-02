@@ -45,7 +45,6 @@ class Player(pygame.sprite.Sprite):
 
         self.facing = 'down'
         self.animation_loop = 1
-        # self.kills = 0
 
         # image viene de la clase Sprite
         self.image = self.game.character_spritesheet.get_sprite_black(129, 15, self.width, self.height)
@@ -86,6 +85,7 @@ class Player(pygame.sprite.Sprite):
 
     def movement(self):
         # función que produce el movimiento del personaje
+        # el código comentado activa la camara del juego
         keys = pygame.key.get_pressed()
         if keys[pygame.K_LEFT]:
             # for sprite in self.game.all_sprites:
@@ -117,6 +117,7 @@ class Player(pygame.sprite.Sprite):
 
     def collide_blocks(self, direction):
         # función que produce las colisiones del personaje con los muros
+        # el código comentado soluciona el bug de la camara del juego
         if direction == 'x':
             hits = pygame.sprite.spritecollide(self, self.game.blocks, False)
             if hits:
@@ -409,7 +410,6 @@ class Attack(pygame.sprite.Sprite):
         self.height = TILESIZE
 
         self.animation_loop = 0
-        # kills = pygame.sprite.spritecollide(self, self.game.enemies, True)
 
         self.image = self.game.attack_spritesheet.get_sprite_black(0, 0, self.width, self.height)
 

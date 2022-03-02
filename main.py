@@ -129,21 +129,6 @@ class Game:
 			self.update()
 			self.draw()
 
-	def comprobar_eventos(self):
-		for event in pygame.event.get():
-			if event.type == pygame.QUIT:
-				self.CORRIENDO, self.JUGANDO = False, False
-				self.MENU_ACTUAL.RUN_DISPLAY = False
-			if event.type == pygame.KEYDOWN:
-				if event.key == pygame.K_RETURN:
-					self.ENTER = True
-				if event.key == pygame.K_BACKSPACE:
-					self.BACK = True
-				if event.key == pygame.K_DOWN:
-					self.ABAJO = True
-				if event.key == pygame.K_UP:
-					self.ARRIBA = True
-
 	def game_over(self):
 
 		# gestiona el fin del juego
