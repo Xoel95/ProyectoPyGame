@@ -54,7 +54,7 @@ class Game:
 		self.blocks = pygame.sprite.LayeredUpdates()
 		self.enemies = pygame.sprite.LayeredUpdates()
 		self.attacks = pygame.sprite.LayeredUpdates()
-		pygame.mixer.music.load("music/legend-of-zelda-the-nes-music-overworld-theme.mp3")
+		pygame.mixer.music.load("music/the-legend-of-zelda-overworld-theme.mp3")
 		pygame.mixer.music.set_volume(0.4)
 		pygame.mixer.music.play(20)
 
@@ -72,7 +72,7 @@ class Game:
 				if event.key == pygame.K_SPACE:
 					corte = pygame.mixer.Sound("sfx/espada-corta-aire.wav")
 					corte.set_volume(1)
-					corte.play(1)
+					corte.play()
 					if self.player.facing == 'down':
 						Attack(self, self.player.rect.x, self.player.rect.y + TILESIZE)
 					if self.player.facing == 'up':
