@@ -133,7 +133,7 @@ class Game:
 
 		# gestiona el fin del juego
 
-		connection.Connection.saveScore(self.score);
+		connection.Connection.saveScore(self.score)
 		pygame.mixer.music.load("music/classic-mario-death-tune.mp3")
 		pygame.mixer.music.set_volume(0.7)
 		pygame.mixer.music.play(1)
@@ -175,7 +175,7 @@ class Game:
 
 		# gestiona la victoria del juego
 
-		connection.Connection.saveScore(self.score);
+		connection.Connection.saveScore(self.score)
 		pygame.mixer.music.load("music/two-steps-from-hell-victory.mp3")
 		pygame.mixer.music.set_volume(1)
 		pygame.mixer.music.play(1)
